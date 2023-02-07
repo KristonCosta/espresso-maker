@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { Dispatch, FC, useCallback } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { shallowEqual, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addShot, removeShot } from './store/actionCreators';
+import { AddShot } from './components/AddShot';
+import { Shot } from './components/Shot';
 
-function App() {
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const App: FC = () => {
+  const shots: readonly IShot[] = useSelector(
+    (state: ShotState) => state.shots, 
+    shallowEqual
+  )
+
+  const dispatch: Dispatch<any> = useDispatch()
+
+  const saveShot = useCallback(
+    (shot: IShot) => dispatch(addShot(shot)), 
+    [dispatch]
+  )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <main>
+      <h1>My Shots</h1>
+      <AddShot saveShot={saveShot} />
+      {shots.map((shot: IShot) => (
+        <Shot 
+          key={shot.id}
+          shot={shot} 
+          removeShot={removeShot}
+        />
+      ))}
+    </main>
+  )
 }
 
-export default App;
+export default App 
