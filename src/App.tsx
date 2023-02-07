@@ -30,7 +30,7 @@ const App: FC = () => {
           display: "grid",
           gridRowGap: "20px",
           padding: "20px",
-          margin: "10px 300px",
+          margin: "10px 0px",
         }}>
         <Typography variant="h6" style={{ margin: "20px 20px" }}> Shot History</Typography>
         {shots.map((shot: IShot) => (

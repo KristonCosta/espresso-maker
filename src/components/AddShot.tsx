@@ -25,7 +25,7 @@ export const AddShot: FC<Props> = ({ saveShot }) => {
     }
 
     return (
-        <Paper style={{ margin: "10px 300px" }}>
+        <Paper style={{ margin: "10px 10" }}>
             <Typography variant="h6" style={{
                 margin: "20px 0px 0px 20px",
                 padding: "20px",
