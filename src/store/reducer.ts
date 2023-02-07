@@ -5,14 +5,15 @@ const initialState: ShotState = {
     shots: []
 }
 const reducer = (
-    tryState: ShotState | undefined, 
+    tryState: ShotState | undefined,
     action: ShotAction
 ): ShotState => {
     const state = tryState === undefined ? initialState : tryState as ShotState
     switch (action.type) {
-        case actionTypes.ADD_SHOT: 
+        case actionTypes.ADD_SHOT:
+            console.log("Foo")
             const newShot: IShot = {
-                id: Math.random(), 
+                id: Math.random(),
                 brew_time: action.shot.brew_time,
                 grind_size: action.shot.grind_size,
                 grind_weight: action.shot.grind_weight,
@@ -20,7 +21,7 @@ const reducer = (
                 yield: action.shot.yield,
             }
             return {
-                ...state, 
+                ...state,
                 shots: state.shots.concat(newShot)
             }
         case actionTypes.REMOVE_SHOT:
@@ -28,11 +29,11 @@ const reducer = (
                 shot => shot.id !== action.shot.id
             )
             return {
-                ...state, 
+                ...state,
                 shots: updatedShots
             }
     }
-    return state 
+    return state
 }
 
 export default reducer

@@ -1,10 +1,11 @@
 interface IShot {
-    id: number 
-    grind_weight: number, 
-    grind_size: number, 
-    brew_time: string, 
+    id: number
+    grind_weight: number,
+    grind_size: number,
+    brew_time: string,
     yield: number,
-    temperature: number, 
+    temperature: number,
+    brew_time: Date
 }
 
 type ShotState = {
